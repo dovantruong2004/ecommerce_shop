@@ -1,6 +1,6 @@
 
 <div class="page-inner">
-    <h1>Cập nhật danh mục mới</h1>
+    <h1>Cập nhật danh mục</h1>
     <form action="admin.php?hanh_dong=capnhat_danhmuc" method="post">
         <div>
         <input type="hidden" name="id" value="<?php echo $mot_danhmuc['id']; ?>">
