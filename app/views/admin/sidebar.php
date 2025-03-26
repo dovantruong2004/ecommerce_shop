@@ -49,7 +49,7 @@
                     </a>                    
                 </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#forms">
+                    <a href="<?php echo 'admin.php?hanh_dong=don_hang' ?>">
                         <i class="fas fa-pen-square"></i>
                         <p>Đơn hàng</p>
 
@@ -57,7 +57,7 @@
 
                 </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#tables">
+                    <a href="<?php echo 'admin.php?hanh_dong=nguoi_dung' ?>">
                         <i class="fas fa-table"></i>
                         <p>Người dùng</p>
 
@@ -65,7 +65,7 @@
 
                 </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#maps">
+                    <a href="<?php echo 'admin.php?hanh_dong=danh_gia' ?>">
                         <i class="fas fa-map-marker-alt"></i>
                         <p>Đánh giá</p>
 
@@ -73,7 +73,7 @@
 
                 </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#charts">
+                    <a href="<?php echo 'admin.php?hanh_dong=san_pham' ?>">
                         <i class="far fa-chart-bar"></i>
                         <p>Thống kê</p>
                         <span class="caret"></span>

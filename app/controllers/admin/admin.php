@@ -11,6 +11,7 @@ include("../../models/tukhoa_sanpham.php");
 include("../../models/giohang.php");
 include("../../models/donhang.php");
 include("../../models/nguoidung.php");
+include("../../models/chi_tiet_donhang.php");
 include("../../../duong_dan_anh.php");
 $thong_bao = '';
 if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
@@ -201,6 +202,45 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
             $danhsach_sanpham = danhsach_sanpham();
             $danhsach_tukhoa = danhsach_tukhoa();
             include("../../views/admin/sanpham/tu_khoa/danhsach.php");
+            break;
+        //Quản lí đơn hàng
+        case "don_hang":
+            $quan_li_donhang = admin_quan_li_donhang();
+            include("../../views/admin/donhang/danhsach.php");
+            break;
+        case "huy_don":
+            if(isset($_GET['id'])&&$_GET['id']!=""){
+                $id_donhang = $_GET['id'];
+                $trang_thai = 'Đã hủy';
+                huy_donhang($id_donhang,$trang_thai);
+                $quan_li_donhang = admin_quan_li_donhang();
+                include("../../views/admin/donhang/danhsach.php");
+            }
+            break;
+        case "xem_chi_tiet_donhang":
+            if(isset($_GET['id'])&&$_GET['id']!=""){
+                $id_don_hang = $_GET['id'];
+                $lich_su_donhang = admin_lich_su_donhang($id_don_hang);
+                include("../../views/admin/donhang/chitiet_donhang.php");
+            }
+            break;
+        case "capnhat_donhang_danggiaohang":
+            if(isset($_GET['id'])&&$_GET['id']!=""){
+                $id_don_hang = $_GET['id'];
+                $trang_thai = 'Đang giao hàng';
+                capnhat_trangthai_donhang($id_don_hang,$trang_thai);
+                $quan_li_donhang = admin_quan_li_donhang();
+                include("../../views/admin/donhang/danhsach.php");
+            }
+            break;
+        case "capnhat_donhang_dagiaohang":
+            if(isset($_GET['id'])&&$_GET['id']!=""){
+                $id_don_hang = $_GET['id'];
+                $trang_thai = 'Đã giao hàng';
+                capnhat_trangthai_donhang($id_don_hang,$trang_thai);
+                $quan_li_donhang = admin_quan_li_donhang();
+                include("../../views/admin/donhang/danhsach.php");
+            }
             break;
         default:
             include("../../views/admin/main.php");

@@ -25,3 +25,10 @@ function xoa_hinhanh($id){
     $sql = "DELETE FROM anh_san_pham WHERE id = '$id'";
     thucthi_truyvan($sql);
 }
+function hinhanh_sanpham($id){
+    $sql = "SELECT san_pham.id as id_sanpham ,san_pham.ten , anh_san_pham.url , anh_san_pham.id as id_hinhanh 
+            FROM anh_san_pham
+            LEFT JOIN san_pham ON anh_san_pham.id_san_pham = san_pham.id WHERE san_pham.id = '$id'";
+    $hinhanh_sanpham = pdo_query($sql);
+    return $hinhanh_sanpham;
+}
