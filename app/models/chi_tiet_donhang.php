@@ -72,3 +72,8 @@ function admin_quan_li_donhang(){
     $quan_li_donhang = pdo_query($sql);
     return $quan_li_donhang;
 }
+function thong_tin_vanchuyen($id,$id_nguoi_dung){
+    $sql = "SELECT * FROM don_hang WHERE id='$id' AND id_nguoi_dung='$id_nguoi_dung'";
+    $thong_tin_vanchuyen = pdo_query($sql);
+    return $thong_tin_vanchuyen;
+}

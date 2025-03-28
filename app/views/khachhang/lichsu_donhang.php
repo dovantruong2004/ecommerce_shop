@@ -12,19 +12,15 @@
                 </tr>
             </thead>
             <tbody class="align-middle">
-                <?php
-                foreach ($lich_su_donhang as $don_hang) {
-                ?>
+                <?php foreach($thong_tin_vanchuyen as $thong_tin){ ?>
                     <tr>
-                        <td><?php echo $don_hang['ho_va_ten'] ?></td>
-                        <td><?php echo $don_hang['so_dien_thoai'] ?></td>
-                        <td><?php echo $don_hang['dia_chi_giao_hang'] ?></td>
-                        <td><?php echo $don_hang['email'] ?></td>
+                        <td><?php echo $thong_tin['ho_va_ten'] ?></td>
+                        <td><?php echo $thong_tin['so_dien_thoai'] ?></td>
+                        <td><?php echo $thong_tin['dia_chi_giao_hang'] ?></td>
+                        <td><?php echo $thong_tin['email'] ?></td>
                     </tr>
 
-                <?php
-                }
-                ?>
+                <?php } ?>
             </tbody>
         </table>
         <table class="table table-bordered text-center mb-0">

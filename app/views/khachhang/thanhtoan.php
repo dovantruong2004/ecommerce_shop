@@ -61,8 +61,8 @@
                      <div class="card-body">
                          <div class="form-group">
                              <div class="custom-control custom-radio">
-                                 <input type="radio" class="custom-control-input" name="phuong_thuc_thanh_toan" id="cod">
-                                 <label class="custom-control-label" for="cod">Ship COD ( Trả tiền khi giao hàng xong)</label>
+                                <input type="radio" class="custom-control-input" name="phuong_thuc_thanh_toan" id="cod" value="Ship COD" checked>
+                                <label class="custom-control-label" for="cod">Ship COD ( Trả tiền khi giao hàng xong)</label>
                              </div>
                          </div>
                      </div>
@@ -76,3 +76,13 @@
      </div>
  </div>
  <!-- Checkout End -->
+ <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let form = document.querySelector("form");
+        let submitButton = document.querySelector("input[name='thanh_toan']");
+
+        form.addEventListener("submit", function () {
+            submitButton.disabled = true;
+        });
+    });
+</script>

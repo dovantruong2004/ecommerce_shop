@@ -40,8 +40,8 @@
                                         <a href="khachhang.php?hanh_dong=dang_xuat" class="dropdown-item">Đăng xuất</a>
                                     </div>
                                 </div>
-                            <?php }if(isset($_SESSION["khachhang"])&&$_SESSION["khachhang"]['vai_tro']=='admin'){ ?>
-                                <a href="../admin/admin.php" class="dropdown-item">Truy cập trang admin</a>
+                            <?php }elseif(isset($_SESSION["khachhang"])&&$_SESSION["khachhang"]['vai_tro']=='admin'){ ?>
+                                <a href="../admin/admin.php" class="dropdown-item" target="_blank">Truy cập trang admin</a>
                                 <a href="khachhang.php?hanh_dong=dang_xuat" class="dropdown-item">Đăng xuất</a>
                             <?php }else{  ?>
                             <a href="khachhang.php?hanh_dong=dang_nhap" class="nav-item nav-link">Đăng nhập</a>

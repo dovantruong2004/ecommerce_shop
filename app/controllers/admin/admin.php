@@ -12,6 +12,7 @@ include("../../models/giohang.php");
 include("../../models/donhang.php");
 include("../../models/nguoidung.php");
 include("../../models/chi_tiet_donhang.php");
+include("../../models/thong_ke.php");
 include("../../../duong_dan_anh.php");
 $thong_bao = '';
 if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
@@ -241,6 +242,13 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                 $quan_li_donhang = admin_quan_li_donhang();
                 include("../../views/admin/donhang/danhsach.php");
             }
+            break;
+        // Quản lí người dùng
+        
+        case "nguoi_dung":
+            $vai_tro='khach_hang';
+            $quan_li_nguoidung = quan_li_nguoidung($vai_tro);
+            include("../../views/admin/nguoidung/danhsach.php");
             break;
         default:
             include("../../views/admin/main.php");

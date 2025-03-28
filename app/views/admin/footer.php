@@ -1,30 +1,4 @@
-<footer class="footer">
-    <div class="container-fluid d-flex justify-content-between">
-        <nav class="pull-left">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Admin
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"> Help </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"> Licenses </a>
-                </li>
-            </ul>
-        </nav>
-        <div class="copyright">
-            2024, made with <i class="fa fa-heart heart text-danger"></i> by
-            <a href="#">Admin</a>
-        </div>
-        <div>
-            Distributed by
-            <a target="_blank" href="#">Admin</a>.
-        </div>
-    </div>
-</footer>
+
 
 <!--   Core JS Files   -->
 <script src="../../../public/style/admin/assets/js/core/jquery-3.7.1.min.js"></script>
@@ -60,8 +34,8 @@
 <script src="../../../public/style/admin/assets/js/kaiadmin.min.js"></script>
 
 <!-- Kaiadmin DEMO methods, don't include it in your project! -->
-<script src="assets/js/setting-demo.js"></script>
-<script src="assets/js/demo.js"></script>
+<script src="../../../public/style/admin/assets/assets/js/setting-demo.js"></script>
+<script src="../../../public/style/admin/assets/assets/js/demo.js"></script>
 <script>
 $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
     type: "line",

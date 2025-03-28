@@ -130,18 +130,17 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
             if (isset($_POST['thanh_toan'])) {
                 $email = $_POST['email'];
                 $ho_va_ten = $_POST['ho_va_ten'];
-                $dia_chi = $_POST['dia_chi'];
                 $dia_chi_giao_hang = $_POST['dia_chi'];
                 $so_dien_thoai = $_POST['so_dien_thoai'];
                 $tong_gia = $_POST['tong_gia'];
                 $phuong_thuc_thanh_toan = "Ship COD";
                 $trang_thai = "Chờ giao hàng"; // Định nghĩa trạng thái đơn hàng
-            
-                // Gọi hàm tao_don_hang() và lấy id_don_hang
-                $id_don_hang = tao_don_hang($id_nguoi_dung,$ho_va_ten,$email,$so_dien_thoai,$dia_chi_giao_hang,$tong_gia,$phuong_thuc_thanh_toan,$trang_thai);
+                $ngay_dat_hang = date('Y/m/d');
                 
-                if ($id_don_hang) {
-                    // Lấy thông tin giỏ hàng của người dùng
+                $id_don_hang = tao_don_hang($id_nguoi_dung, $ho_va_ten, $email, $so_dien_thoai, $dia_chi_giao_hang, $tong_gia, $phuong_thuc_thanh_toan, $ngay_dat_hang, $trang_thai);
+                //file_put_contents("debug.log", "ID đơn hàng: $id_don_hang\n", FILE_APPEND);
+
+                
                     $gio_hang = gio_hang($id_nguoi_dung);
             
                     // Thêm chi tiết đơn hàng cho từng sản phẩm trong giỏ hàng
@@ -156,11 +155,10 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
             
                     // Xóa giỏ hàng sau khi thanh toán thành công (nếu cần)
                     xoa_giohang_nguoidung($id_nguoi_dung);
-            
                     $thong_bao =  "Đặt hàng thành công!";
-                } else {
-                    $thong_bao = "Lỗi khi tạo đơn hàng.";
-                }
+                    // header("Location: khachhang.php?hanh_dong=thanh_toan&success=1"); 
+                    // exit(); // Đảm bảo dừng script tại đây
+                
             }
             $gio_hang = gio_hang($id_nguoi_dung);
             
@@ -176,6 +174,8 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
             if(isset($_GET['id'])&&$_GET['id']!=""){
                 $id_don_hang = $_GET['id'];
                 $lich_su_donhang = lich_su_donhang($id_nguoi_dung,$id_don_hang);
+                $thong_tin_vanchuyen=thong_tin_vanchuyen($id_don_hang,$id_nguoi_dung);
+               // var_dump($thong_tin_vanchuyen);
                 include("../../views/khachhang/lichsu_donhang.php");
             }
             break;

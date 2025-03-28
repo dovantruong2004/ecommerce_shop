@@ -24,7 +24,7 @@
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
                 <li class="nav-item active">
-                    <a data-bs-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                    <a href="admin.php?hanh_dong=">
                         <i class="fas fa-home"></i>
                         <p>Trang chủ</p>
 
@@ -123,22 +123,7 @@
             <!-- End Logo Header -->
         </div>
         <!-- Navbar Header -->
-        <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
-            <div class="container-fluid">
-                <nav class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <button type="submit" class="btn btn-search pe-1">
-                                <i class="fa fa-search search-icon"></i>
-                            </button>
-                        </div>
-                        <input type="text" placeholder="Tìm kiếm ..." class="form-control" />
-                    </div>
-                </nav>
-
-
-            </div>
-        </nav>
+        <div class="container-fluid"><h1>Trang quản lí</h1></div>
         <!-- End Navbar -->
     </div>
     <div class="container">
