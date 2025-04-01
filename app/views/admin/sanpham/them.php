@@ -27,6 +27,7 @@
             </select>
         </div>
         <p style="color: green;"><strong><?php echo $thong_bao ?></strong></p>
+        <p style="color: red;"><strong><?php echo $loi ?></strong></p>
         <input type="submit" name="them_sanpham" class="btn btn-primary mt-3" value="Thêm"></input>
     </form>
 </div>

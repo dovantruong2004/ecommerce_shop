@@ -12,6 +12,7 @@
             <input type="text" name="ten_danhmuc" id="" placeholder="<?php echo $mot_danhmuc['ten'] ?>">
         </div>
         <p style="color: green;"><strong><?php echo $thong_bao ?></strong></p>
+        <p style="color: red;"><strong><?php echo $loi ?></strong></p>
         <input type="submit" name="capnhat_danhmuc" class="btn btn-primary mt-3" value="Cập nhật"></input>
     </form>
 </div>

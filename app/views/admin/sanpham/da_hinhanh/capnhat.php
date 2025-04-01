@@ -17,6 +17,7 @@
         <div class="mt-3">
             <input type="file" name="url" id="">
         </div>
+        <p style="color: red;"><strong><?php echo $loi ?></strong></p>
         <p style="color: green;"><strong><?php echo $thong_bao ?></strong></p>
         <input type="submit" name="capnhat_hinhanh" class="btn btn-primary mt-3" value="Cập nhật"></input>
     </form>

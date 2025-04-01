@@ -31,6 +31,7 @@
         </div>
         <div>
             <p style="color: green;"><?php echo $thong_bao ?></p>
+            <p style="color: red;"><?php echo $loi ?></p>
         </div>
     </form>
 </div>

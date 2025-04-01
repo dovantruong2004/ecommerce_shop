@@ -13,6 +13,7 @@
             <input type="file" name="url" id="">
         </div>
         <p style="color: green;"><strong><?php echo $thong_bao ?></strong></p>
+        <p style="color: red;"><strong><?php echo $loi ?></strong></p>
         <input type="submit" name="them_hinhanh" class="btn btn-primary mt-3" value="Thêm"></input>
     </form>
 </div>

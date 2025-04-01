@@ -44,7 +44,7 @@
                                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                                         <h6 class="text-truncate mb-3"><?php echo $sanpham['ten'] ?></h6>
                                         <div class="d-flex justify-content-center">
-                                            <h6><?php echo $sanpham['gia'] ?> VNĐ</h6>
+                                            <h6><?php echo number_format($sanpham['gia'], 0, '', '') ?> VNĐ</h6>
                                         </div>  
                                     </div>
                                     

@@ -58,7 +58,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="<?php echo 'admin.php?hanh_dong=nguoi_dung' ?>">
-                        <i class="fas fa-table"></i>
+                        <i class="fas fa-user-alt"></i>
                         <p>Người dùng</p>
 
                     </a>
@@ -66,35 +66,24 @@
                 </li>
                 <li class="nav-item">
                     <a href="<?php echo 'admin.php?hanh_dong=danh_gia' ?>">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <i class="fab fa-rocketchat"></i>
                         <p>Đánh giá</p>
 
                     </a>
 
                 </li>
                 <li class="nav-item">
-                    <a href="<?php echo 'admin.php?hanh_dong=san_pham' ?>">
+                    <a href="<?php echo 'admin.php?hanh_dong=thong_ke' ?>">
                         <i class="far fa-chart-bar"></i>
                         <p>Thống kê</p>
-                        <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="charts">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="charts/charts.html">
-                                    <span class="sub-item">Chart Js</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="charts/sparkline.html">
-                                    <span class="sub-item">Sparkline</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
-
-
+                <li class="nav-item">
+                    <a href="<?php echo 'admin.php?hanh_dong=lienhe' ?>">
+                        <i class="far fa-envelope"></i>
+                        <p>Liên hệ</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -28,9 +28,9 @@
                 <h3 class="font-weight-semi-bold"><?php echo $thongtin_sanpham['ten'] ?></h3>
                 <div class="d-flex mb-3">
                     
-                    <small class="pt-1">(50 Reviews)</small>
+                    <small class="pt-1">Số lượt bình luận(<?php foreach($so_binh_luan as $s){?><?php echo $s[0] ?> <?php  } ?>)</small>
                 </div>
-                <h3 class="font-weight-semi-bold mb-4"><?php echo $thongtin_sanpham['gia'] ?> VNĐ</h3>
+                <h3 class="font-weight-semi-bold mb-4"><?php echo number_format($thongtin_sanpham['gia'], 0, '', '') ?> VNĐ</h3>
                 
                 
                 <div class="d-flex align-items-center mb-4 pt-2">
@@ -73,7 +73,7 @@
                 <div class="nav nav-tabs justify-content-center border-secondary mb-4">
                     <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Mô tả</a>
                     
-                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Đánh giá (0)</a>
+                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Đánh giá (<?php foreach($so_binh_luan as $s){?><?php echo $s[0] ?> <?php  } ?>)</a>
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-pane-1">
@@ -86,25 +86,33 @@
                             <div class="col-md-6">
                                 <h4 class="mb-4">Bình luận về sản phẩm</h4>
                                 <div class="media mb-4">
-                                    
-                                    <div class="media-body">
-                                        <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
-                                        
-                                        <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
+                                    <?php foreach($binhluan_sanpham as $binh_luan){ ?>
+                                        <div class="media-body">
+                                            <h6><?php echo $binh_luan['tai_khoan']?><small> - <i><?php echo $binh_luan['ngay_binh_luan']?></i></small></h6>
+                                            
+                                            <p><?php echo $binh_luan['binh_luan']?></p>
                                     </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <h4 class="mb-4">Bình luận</h4>
-                                <form>
+                                <?php if(isset($_SESSION['khachhang'])){ ?>
+                                <form action="khachhang.php?hanh_dong=binhluan" method="post">
+                                    <input type="hidden" name="id_san_pham" value="<?php echo $thongtin_sanpham['id'] ?>">
                                     <div class="form-group">
                                         <label for="message">Bình luận của bạn</label>
-                                        <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                        <textarea id="message" cols="30" rows="5" class="form-control" name="binh_luan"></textarea>
                                     </div>
                                     <div class="form-group mb-0">
-                                        <input type="submit" value="Gửi" class="btn btn-primary px-3">
+                                        <input type="submit" value="Gửi" class="btn btn-primary px-3" name="gui_binh_luan">
                                     </div>
                                 </form>
+                                
+                                <?php }else{ ?>
+                                
+                                    <h3 style="color: red;">Vui lòng đăng nhập để bình luận</h3>
+                                <?php }?>
                             </div>
                         </div>
                     </div>

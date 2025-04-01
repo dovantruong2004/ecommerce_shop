@@ -40,7 +40,7 @@
                 ?>
                     <tr>
                         <td class="align-middle"><?php echo $don_hang['ten'] ?></td>
-                        <td class="align-middle"><?php echo $don_hang['gia'] ?> VNĐ</td>
+                        <td class="align-middle"><?php echo number_format($don_hang['gia'], 0, '', '') ?> VNĐ</td>
                         <td class="align-middle">
                             1
                         </td>

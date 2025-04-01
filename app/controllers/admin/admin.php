@@ -13,8 +13,17 @@ include("../../models/donhang.php");
 include("../../models/nguoidung.php");
 include("../../models/chi_tiet_donhang.php");
 include("../../models/thong_ke.php");
+include("../../models/lienhe.php");
 include("../../../duong_dan_anh.php");
 $thong_bao = '';
+$loi = '';
+$thong_ke_sanpham_danhmuc = soluong_sanpham_danhmuc();
+$doanh_thu_ngay = doanh_thu_theo_ngay();
+$doanh_thu_thang = doanh_thu_theo_thang();
+$so_don_huy = so_don_huy();
+$so_don_hoanthanh = so_don_hoanthanh();
+$so_luong_sanpham_danhmuc = soluong_sanpham_danhmuc();
+$so_don_dadat = so_don_dadat();
 if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
     $hanh_dong = $_GET["hanh_dong"];
     switch ($hanh_dong) {
@@ -27,8 +36,12 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
 
             if (isset($_POST["them_danhmuc"]) && $_POST["them_danhmuc"]) {
                 $ten_danhmuc = $_POST["ten_danhmuc"];
-                them_danhmuc($ten_danhmuc);
-                $thong_bao = "Thêm thành công";
+                if ($ten_danhmuc == "") {
+                    $loi = "Danh mục không được để trống";
+                } else {
+                    them_danhmuc($ten_danhmuc);
+                    $thong_bao = "Thêm thành công";
+                }
             }
             include("../../views/admin/danhmuc/them.php");
             break;
@@ -41,9 +54,13 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
             if (isset($_POST["capnhat_danhmuc"])) {
                 $id = $_POST["id"];
                 $ten = $_POST["ten_danhmuc"];
-                capnhat_danhmuc($id, $ten);
-                $mot_danhmuc = truyvan_1_danhmuc($id);
-                $thong_bao = "Cập nhật thành công";
+                if ($ten == "") {
+                    $loi = "Danh mục không được để trống";
+                } else {
+                    capnhat_danhmuc($id, $ten);
+                    $mot_danhmuc = truyvan_1_danhmuc($id);
+                    $thong_bao = "Cập nhật thành công";
+                }
             }
             include("../../views/admin/danhmuc/capnhat.php");
             break;
@@ -68,8 +85,18 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                 $mo_ta = $_POST["mo_ta"];
                 $so_luong = $_POST["so_luong"];
                 $id_danh_muc = $_POST["id_danh_muc"];
-                them_sanpham($ten, $mo_ta, $gia, $so_luong, $id_danh_muc);
-                $thong_bao = "Thêm thành công";
+                if ($ten == "") {
+                    $loi = "Không được để trống tên sản phẩm";
+                } elseif ($gia == "") {
+                    $loi = "Không được để trống giá sản phẩm";
+                } elseif ($mo_ta == "") {
+                    $loi = "Không được để trống mô tả sản phẩm";
+                } elseif ($so_luong == "") {
+                    $loi = "Không được để trống số lượng sản phẩm";
+                } else {
+                    them_sanpham($ten, $mo_ta, $gia, $so_luong, $id_danh_muc);
+                    $thong_bao = "Thêm thành công";
+                }
             }
             $danhsach_danhmuc = danhsach_danhmuc();
             include("../../views/admin/sanpham/them.php");
@@ -86,9 +113,19 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                 $mo_ta = $_POST["mo_ta"];
                 $so_luong = $_POST["so_luong"];
                 $id_danh_muc = $_POST["id_danh_muc"];
-                capnhat_sanpham($id, $ten, $mo_ta, $gia, $so_luong, $id_danh_muc);
-                $mot_sanpham = truyvan_mot_sanpham($id);
-                $thong_bao = "Cập nhật thành công";
+                if ($ten == "") {
+                    $loi = "Không được để trống tên sản phẩm";
+                } elseif ($gia == "") {
+                    $loi = "Không được để trống giá sản phẩm";
+                } elseif ($mo_ta == "") {
+                    $loi = "Không được để trống mô tả sản phẩm";
+                } elseif ($so_luong == "") {
+                    $loi = "Không được để trống số lượng sản phẩm";
+                } else {
+                    capnhat_sanpham($id, $ten, $mo_ta, $gia, $so_luong, $id_danh_muc);
+                    $mot_sanpham = truyvan_mot_sanpham($id);
+                    $thong_bao = "Cập nhật thành công";
+                }
             }
             $danhsach_sanpham = danhsach_sanpham();
             $danhsach_danhmuc = danhsach_danhmuc();
@@ -210,45 +247,61 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
             include("../../views/admin/donhang/danhsach.php");
             break;
         case "huy_don":
-            if(isset($_GET['id'])&&$_GET['id']!=""){
+            if (isset($_GET['id']) && $_GET['id'] != "") {
                 $id_donhang = $_GET['id'];
                 $trang_thai = 'Đã hủy';
-                huy_donhang($id_donhang,$trang_thai);
+                huy_donhang($id_donhang, $trang_thai);
                 $quan_li_donhang = admin_quan_li_donhang();
                 include("../../views/admin/donhang/danhsach.php");
             }
             break;
         case "xem_chi_tiet_donhang":
-            if(isset($_GET['id'])&&$_GET['id']!=""){
+            if (isset($_GET['id']) && $_GET['id'] != "") {
                 $id_don_hang = $_GET['id'];
                 $lich_su_donhang = admin_lich_su_donhang($id_don_hang);
                 include("../../views/admin/donhang/chitiet_donhang.php");
             }
             break;
         case "capnhat_donhang_danggiaohang":
-            if(isset($_GET['id'])&&$_GET['id']!=""){
+            if (isset($_GET['id']) && $_GET['id'] != "") {
                 $id_don_hang = $_GET['id'];
                 $trang_thai = 'Đang giao hàng';
-                capnhat_trangthai_donhang($id_don_hang,$trang_thai);
+                capnhat_trangthai_donhang($id_don_hang, $trang_thai);
                 $quan_li_donhang = admin_quan_li_donhang();
                 include("../../views/admin/donhang/danhsach.php");
             }
             break;
         case "capnhat_donhang_dagiaohang":
-            if(isset($_GET['id'])&&$_GET['id']!=""){
+            if (isset($_GET['id']) && $_GET['id'] != "") {
                 $id_don_hang = $_GET['id'];
                 $trang_thai = 'Đã giao hàng';
-                capnhat_trangthai_donhang($id_don_hang,$trang_thai);
+                capnhat_trangthai_donhang($id_don_hang, $trang_thai);
                 $quan_li_donhang = admin_quan_li_donhang();
                 include("../../views/admin/donhang/danhsach.php");
             }
             break;
         // Quản lí người dùng
-        
+
         case "nguoi_dung":
-            $vai_tro='khach_hang';
+            $vai_tro = 'khach_hang';
             $quan_li_nguoidung = quan_li_nguoidung($vai_tro);
             include("../../views/admin/nguoidung/danhsach.php");
+            break;
+        //Thống kê
+
+        case "thong_ke";
+            $so_luong_sanpham_danhmuc = soluong_sanpham_danhmuc();
+            include("../../views/admin/thongke/danhsach.php");
+            break;
+
+        //Đánh giá
+        case "danh_gia":
+            $danh_sach_binhluan = danhsach_binhluan();
+            include("../../views/admin/danhgia/danhsach.php");
+            break;
+        case "lienhe":
+            $danhsach_lienhe = danhsach_lienhe();
+            include("../../views/admin/lienhe/danhsach.php");
             break;
         default:
             include("../../views/admin/main.php");

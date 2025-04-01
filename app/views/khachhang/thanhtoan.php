@@ -72,6 +72,7 @@
                  </div>
              </div>
              <div><h3 style="color: green;"><?php echo $thong_bao ?></h3></div>
+             <div><h3 style="color: red;"><?php echo $loi ?></h3></div>
          </form>
      </div>
  </div>

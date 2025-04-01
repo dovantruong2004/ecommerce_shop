@@ -63,6 +63,52 @@ $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
     lineColor: "#ffa534",
     fillColor: "rgba(255, 165, 52, .14)",
 });
+var barChart = document.getElementById("barChart").getContext("2d")
+        
+      var myBarChart = new Chart(barChart, {
+        type: "bar",
+        data: {
+          labels: [
+            "Tháng 1",
+            "Tháng 2",
+            "Tháng 3",
+            "Tháng 4",
+            "Tháng 5",
+            "Tháng 6",
+            "Tháng 7",
+            "Tháng 8",
+            "Tháng 9",
+            "Tháng 10",
+            "Tháng 11",
+            "Tháng 12",
+          ],
+          datasets: [
+            {
+              label: "Doanh thu của tháng",
+              backgroundColor: "rgb(23, 125, 255)",
+              borderColor: "rgb(23, 125, 255)",
+              data: [<?php foreach($doanh_thu_thang as $doanh_thu){?>
+                    <?php echo $doanh_thu['doanh_thu'] ?>
+              <?php } ?>],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true,
+                },
+              },
+            ],
+          },
+        },
+      });
+
+    
 </script>
 </body>
 
