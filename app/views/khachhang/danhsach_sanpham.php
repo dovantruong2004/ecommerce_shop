@@ -37,9 +37,9 @@
                                 <input type="hidden" name="id" value="<?php echo $sanpham['id'] ?>">
                                 <input type="hidden" name="gia" value="<?php echo $sanpham['gia'] ?>">
                                 <input type="hidden" name="ten" value="<?php echo $sanpham['ten'] ?>">
-                                <div class="card product-item border-0 mb-4">
-                                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0" style=" width: 370px; height: 250px;">
-                                        <img class="img-fluid w-100" src="http://localhost:90/ecommerce/public/hinhanh/<?php echo $anh_thu_nhat ?>" alt="">
+                                <div class="card product-item border-0 mb-4" style="height: 573px;">
+                                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0" >
+                                        <img class="img-fluid w-100" src="http://localhost:90/ecommerce/public/hinhanh/<?php echo $anh_thu_nhat ?>" alt="" style="width: 100%;height: 100%;object-fit: contain;">
                                     </div>
                                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                                         <h6 class="text-truncate mb-3"><?php echo $sanpham['ten'] ?></h6>

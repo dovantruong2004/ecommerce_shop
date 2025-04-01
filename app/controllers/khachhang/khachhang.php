@@ -136,13 +136,15 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
             include("../../views/khachhang/main.php");
             break;
         case "gio_hang":
-            $id_nguoi_dung = $_SESSION["khachhang"]['id'];
-            if (isset($_POST['them_vao_giohang'])) {
-                $id_san_pham = $_POST['id'];
-                $so_luong = 1;
-                them_vao_giohang($id_nguoi_dung, $id_san_pham, $so_luong);
+            if(isset($_SESSION["khachhang"])){
+                $id_nguoi_dung = $_SESSION["khachhang"]['id'];
+                if (isset($_POST['them_vao_giohang'])) {
+                    $id_san_pham = $_POST['id'];
+                    $so_luong = 1;
+                    them_vao_giohang($id_nguoi_dung, $id_san_pham, $so_luong);
+                }
+                $gio_hang = gio_hang($id_nguoi_dung);
             }
-            $gio_hang = gio_hang($id_nguoi_dung);
             include("../../views/khachhang/giohang.php");
             break;
         case "xoa_sanpham_giohang":
@@ -232,13 +234,13 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
             }
             break;
         case "lienhe":
-            $id_nguoi_dung = $_SESSION["khachhang"]['id'];
+            
             if (isset($_POST['gui'])) {
                 $email = $_POST['email'];
                 $ten = $_POST['ten'];
                 $chu_de = $_POST['chu_de'];
                 $noi_dung = $_POST['noi_dung'];
-                lienhe($id_nguoi_dung, $email, $ten, $chu_de, $noi_dung);
+                lienhe( $email, $ten, $chu_de, $noi_dung);
                 $thong_bao = "Gửi thành công";
             }
             include("../../views/khachhang/lienhe.php");

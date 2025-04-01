@@ -3,15 +3,15 @@
         <div class="row px-xl-5">
             <div class="col-lg-5 pb-5">
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner border">
+                    <div class="carousel-inner border" style="height:573px;">
                         <?php foreach(array_slice($hinhanh_sanpham,0,1) as $hinhanh){ ?>
-                            <div class="carousel-item active" style="width:210px;height:500px;object-fit: cover;">
-                                <img src="http://localhost:90/ecommerce/public/hinhanh/<?php echo $hinhanh['url'] ?>" alt="Image" style="">
+                            <div class="carousel-item active">
+                                <img src="http://localhost:90/ecommerce/public/hinhanh/<?php echo $hinhanh['url'] ?>" alt="Image" style="" style="width: 100%;height: 100%;object-fit: contain;">
                             </div>
                         <?php } ?>
                         <?php foreach($hinhanh_sanpham as $hinhanh){ ?>
-                            <div class="carousel-item" style="width:210px;height:500px;object-fit: cover;">
-                                <img src="http://localhost:90/ecommerce/public/hinhanh/<?php echo $hinhanh['url'] ?>" alt="Image" style="">
+                            <div class="carousel-item">
+                                <img src="http://localhost:90/ecommerce/public/hinhanh/<?php echo $hinhanh['url'] ?>" alt="Image" style="width: 100%;height: 100%;object-fit: contain;">
                             </div>
                         <?php } ?>
                     </div>
