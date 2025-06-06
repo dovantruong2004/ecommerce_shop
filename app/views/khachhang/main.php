@@ -27,8 +27,8 @@
                         <div class="navbar-nav mr-auto py-0">
                             <a href="khachhang.php?hanh_dong=" class="nav-item nav-link active">Trang chủ</a>
                             <a href="khachhang.php?hanh_dong=danhsach_sanpham" class="nav-item nav-link">Sản phẩm</a>
-                            
                             <a href="khachhang.php?hanh_dong=lienhe" class="nav-item nav-link">Liên hệ</a>
+                            <a href="khachhang.php?hanh_dong=baiviet" class="nav-item nav-link">Danh sách bài viết</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
                             <?php if(isset($_SESSION["khachhang"])&&$_SESSION["khachhang"]['vai_tro']=='khach_hang'){?>

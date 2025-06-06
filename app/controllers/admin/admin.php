@@ -18,12 +18,31 @@ include("../../../duong_dan_anh.php");
 $thong_bao = '';
 $loi = '';
 $thong_ke_sanpham_danhmuc = soluong_sanpham_danhmuc();
-$doanh_thu_ngay = doanh_thu_theo_ngay();
-$doanh_thu_thang = doanh_thu_theo_thang();
+
+$ngay_hien_tai = date('Y-m-d');
+
+$doanh_thu_ngay = doanh_thu_theo_ngay($ngay_hien_tai);
+
+$thang_hien_tai = date('Y-m');
+$doanh_thu_thang = doanh_thu_theo_thang($thang_hien_tai);
+
 $so_don_huy = so_don_huy();
+
 $so_don_hoanthanh = so_don_hoanthanh();
+
 $so_luong_sanpham_danhmuc = soluong_sanpham_danhmuc();
+
 $so_don_dadat = so_don_dadat();
+
+$doanhthu_tatca_thang = doanhthu_tatca_thang();
+// Tạo mảng với 12 phần tử, mặc định là 0
+$doanhThuTheoThang = array_fill(0, 12, 0);
+foreach ($doanhthu_tatca_thang as $item) {
+    $thang = (int) substr($item['thang'], 5, 2); // Lấy số tháng
+    $doanhThuTheoThang[$thang - 1] = (float) $item['doanh_thu']; // Đặt doanh thu vào vị trí đúng
+}
+
+
 if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
     $hanh_dong = $_GET["hanh_dong"];
     switch ($hanh_dong) {
@@ -303,6 +322,99 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
             $danhsach_lienhe = danhsach_lienhe();
             include("../../views/admin/lienhe/danhsach.php");
             break;
+        // Danh mục bài viết
+        case "danhmuc_baiviet":
+            $danhsach_danhmuc_baiviet = danhsach_danhmuc_baiviet();
+            include("../../views/admin/danhmuc_baiviet/danhsach.php");
+            break;
+        case "them_danhmuc_baiviet":
+            if (isset($_POST["them_danhmuc_baiviet"]) && $_POST["them_danhmuc_baiviet"]) {
+                $ten = $_POST["ten"];
+                if ($ten == "") {
+                    $loi = "Danh mục bài viết không được để trống";
+                } else {
+                    them_danhmuc_baiviet($ten);
+                    $thong_bao = "Thêm thành công";
+                }
+            }
+            include("../../views/admin/danhmuc_baiviet/them.php");
+            break;
+        case "capnhat_danhmuc_baiviet":
+            if(isset($_GET['id'])){
+                $id = $_GET['id'];
+                $danhmuc_baiviet = danhmuc_baiviet($id);
+            }
+            if (isset($_POST["capnhat_danhmuc_baiviet"])) {
+                $id = $_POST["id"];
+                $ten = $_POST["ten"];
+                if ($ten == "") {
+                    $loi = "Danh mục bài viết không được để trống";
+                } else {
+                    capnhat_danhmuc_baiviet($id,$ten);
+                    $thong_bao = "Cập nhật thành công";
+                    $danhmuc_baiviet = danhmuc_baiviet($id);
+                }
+            }
+            include("../../views/admin/danhmuc_baiviet/danhsach.php");
+            break;
+        case "xoa_danhmuc_baiviet":
+            if (isset($_GET["id"])) {
+                $id = $_GET["id"];
+                xoa_danhmuc_baiviet($id);
+                $thong_bao = "Xóa thành công";
+            }
+            $danhsach_danhmuc_baiviet = danhsach_danhmuc_baiviet();
+            include("../../views/admin/danhmuc_baiviet/danhsach.php");
+            break;
+        // Bài viết
+        case "baiviet":
+            $bai_viet = danhsach_baiviet();
+            include("../../views/admin/baiviet/danhsach.php");
+            break;
+        case "them_baiviet":
+            if(isset($_POST['them_baiviet'])){
+                $tieu_de = $_POST['tieu_de'];
+                $noi_dung = $_POST['noi_dung'];
+                $tac_gia = $_POST['tac_gia'];
+                $ngay_dang_bai = date("Y-m-d");
+                $id_danhmuc_baiviet = $_POST['id_danhmuc_baiviet'];
+                them_baiviet($tieu_de,$noi_dung,$tac_gia,$ngay_dang_bai,$id_danhmuc_baiviet);
+                $thong_bao = "Thêm thành công";
+            }
+            $danhsach_danhmuc_baiviet = danhsach_danhmuc_baiviet();
+            include("../../views/admin/baiviet/them.php");
+            break;
+        case "capnhat_baiviet":
+            if(isset($_GET['id'])){
+                $id = $_GET['id'];
+                $chitiet_baiviet = chitiet_baiviet($id);
+                $danhsach_danhmuc_baiviet = danhsach_danhmuc_baiviet();
+            }
+            if(isset($_POST['capnhat_baiviet'])){
+                $id = $_POST["id"];
+                $tieu_de = $_POST['tieu_de'];
+                $noi_dung = $_POST['noi_dung'];
+                $tac_gia = $_POST['tac_gia'];
+                $ngay_dang_bai = date("Y-m-d");
+                $id_danhmuc_baiviet = $_POST['id_danhmuc_baiviet'];
+                capnhat_baiviet($id,$tieu_de,$noi_dung,$tac_gia,$ngay_dang_bai,$id_danhmuc_baiviet);
+                $thong_bao = "Cập nhật thành công";
+                $chitiet_baiviet = chitiet_baiviet($id);
+            }
+            $danhsach_danhmuc_baiviet = danhsach_danhmuc_baiviet();
+            include("../../views/admin/baiviet/capnhat.php");
+            break;
+        case "xoa_baiviet":
+            if (isset($_GET["id"])) {
+                $id = $_GET["id"];
+                xoa_baiviet($id);
+                $thong_bao = "Xóa thành công";
+            }
+            $danhsach_danhmuc_baiviet = danhsach_danhmuc_baiviet();
+            $bai_viet = danhsach_baiviet();
+            include("../../views/admin/baiviet/them.php");
+            break;
+        //
         default:
             include("../../views/admin/main.php");
             break;

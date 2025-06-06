@@ -1,5 +1,4 @@
 
-
 <!--   Core JS Files   -->
 <script src="../../../public/style/admin/assets/js/core/jquery-3.7.1.min.js"></script>
 <script src="../../../public/style/admin/assets/js/core/popper.min.js"></script>
@@ -37,34 +36,46 @@
 <script src="../../../public/style/admin/assets/assets/js/setting-demo.js"></script>
 <script src="../../../public/style/admin/assets/assets/js/demo.js"></script>
 <script>
-$("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
+  $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
     type: "line",
     height: "70",
     width: "100%",
     lineWidth: "2",
     lineColor: "#177dff",
     fillColor: "rgba(23, 125, 255, 0.14)",
-});
+  });
 
-$("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
+  $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
     type: "line",
     height: "70",
     width: "100%",
     lineWidth: "2",
     lineColor: "#f3545d",
     fillColor: "rgba(243, 84, 93, .14)",
-});
+  });
 
-$("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
+  $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
     type: "line",
     height: "70",
     width: "100%",
     lineWidth: "2",
     lineColor: "#ffa534",
     fillColor: "rgba(255, 165, 52, .14)",
-});
-var barChart = document.getElementById("barChart").getContext("2d")
-        
+  });
+
+
+  var barChart = document.getElementById("barChart").getContext("2d");
+  var doanhthu_tatca_thang = <?php echo json_encode($doanhthu_tatca_thang); ?>;
+  
+      let doanhThuData = new Array(12).fill(0); // Mảng với 12 phần tử mặc định là 0
+
+      doanhthu_tatca_thang.forEach(item => {
+        let thang = parseInt(item.thang.substring(5, 7)); // Lấy số tháng
+        doanhThuData[thang - 1] = parseFloat(item.doanh_thu); // Gán doanh thu vào vị trí tương ứng
+      });
+
+      console.log(doanhThuData);
+
       var myBarChart = new Chart(barChart, {
         type: "bar",
         data: {
@@ -82,34 +93,27 @@ var barChart = document.getElementById("barChart").getContext("2d")
             "Tháng 11",
             "Tháng 12",
           ],
-          datasets: [
-            {
-              label: "Doanh thu của tháng",
-              backgroundColor: "rgb(23, 125, 255)",
-              borderColor: "rgb(23, 125, 255)",
-              data: [<?php foreach($doanh_thu_thang as $doanh_thu){?>
-                    <?php echo $doanh_thu['doanh_thu'] ?>
-              <?php } ?>],
-            },
-          ],
+          datasets: [{
+            label: "Doanh thu của tháng",
+            backgroundColor: "rgb(23, 125, 255)",
+            borderColor: "rgb(23, 125, 255)",
+            data: doanhThuData
+          }, ],
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
           scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: true,
-                },
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
               },
-            ],
+            }, ],
           },
         },
       });
-
-    
 </script>
+
 </body>
 
 </html>

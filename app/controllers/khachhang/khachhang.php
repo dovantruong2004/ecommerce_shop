@@ -217,24 +217,32 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                 include("../../views/khachhang/quan_li_don_hang.php");
             }
             break;
-        case "binhluan":
-            $id_nguoi_dung = $_SESSION["khachhang"]['id'];
-            if (isset($_GET['id']) && $_GET['id'] != "") {
-                $id = $_GET['id'];
-                $hinhanh_sanpham = hinhanh_sanpham($id);
-                $thongtin_sanpham = truyvan_mot_sanpham($id);
+            case "binhluan":
                 if (isset($_POST['gui_binh_luan'])) {
+                    $id_nguoi_dung = $_SESSION["khachhang"]['id'];
                     $binh_luan = $_POST['binh_luan'];
                     $id_san_pham = $_POST['id_san_pham'];
                     $ngay_binh_luan = date('Y/m/d');
-                    binh_luan($id_nguoi_dung, $id_san_pham, $binh_luan, $ngay_binh_luan);
-                }
-                $binhluan_sanpham = binhluan_sanpham($id);
-                include("../../views/khachhang/chitiet_sanpham.php");
-            }
-            break;
-        case "lienhe":
             
+                    binh_luan($id_nguoi_dung, $id_san_pham, $binh_luan, $ngay_binh_luan);
+            
+                    // Sau khi gửi bình luận, redirect về lại trang chi tiết sản phẩm
+                    header("Location: khachhang.php?hanh_dong=binhluan&id=" . $id_san_pham);
+                    exit();
+                }
+            
+                if (isset($_GET['id']) && $_GET['id'] != "") {
+                    $id = $_GET['id'];
+                    $hinhanh_sanpham = hinhanh_sanpham($id);
+                    $thongtin_sanpham = truyvan_mot_sanpham($id);
+                    $binhluan_sanpham = binhluan_sanpham($id);
+                    $so_binh_luan = so_binh_luan();
+                }
+            
+                include("../../views/khachhang/chitiet_sanpham.php");
+                break;
+            
+        case "lienhe":
             if (isset($_POST['gui'])) {
                 $email = $_POST['email'];
                 $ten = $_POST['ten'];
@@ -244,6 +252,19 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                 $thong_bao = "Gửi thành công";
             }
             include("../../views/khachhang/lienhe.php");
+            break;
+        case "baiviet":
+            $danhmuc_baiviet = danhsach_danhmuc_baiviet();
+            $bai_viet = danhsach_baiviet();
+            include("../../views/khachhang/baiviet.php");
+            break;
+        case "chitiet_baiviet":
+            if(isset($_GET['id'])){
+                $id = $_GET['id'];
+                $baiviet = chitiet_baiviet($id);
+                include("../../views/khachhang/chitiet_baiviet.php");
+            }
+            
             break;
         default:
             include("../../views/khachhang/main.php");

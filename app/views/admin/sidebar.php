@@ -84,6 +84,18 @@
                         <p>Liên hệ</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="<?php echo 'admin.php?hanh_dong=danhmuc_baiviet' ?>">
+                        <i class="fas fa-pen-square"></i>
+                        <p>Danh mục bài viết</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?php echo 'admin.php?hanh_dong=baiviet' ?>">
+                        <i class="fas fa-pen-square"></i>
+                        <p>Bài viết</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
