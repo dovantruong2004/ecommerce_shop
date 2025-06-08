@@ -9,6 +9,7 @@
             sp.ten,
             sp.gia,
             sp.size,
+            gh.so_luong,
             gh.id as id_giohang,
             GROUP_CONCAT(DISTINCT asp.url SEPARATOR ', ') AS danh_sach_anh
         FROM

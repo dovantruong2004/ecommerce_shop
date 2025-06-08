@@ -33,15 +33,16 @@
                      </div>
                      <div class="card-body">
                          <h5 class="font-weight-medium mb-3">Sản phẩm</h5>
-                         <div class="d-flex justify-content-between">
+                         <div class="">
                             <?php
-                            $tong_tien = 0; foreach($gio_hang as $sanpham){ 
-                                
+                            $tong_tien = 0;
+                            $tong_gia_sanpham = 0;
+                            foreach($gio_hang as $sanpham){ 
                             ?>
                              <input type="hidden" name="id_san_pham" value="<?php echo $sanpham['id'] ?>">
-                             <div><?php echo $sanpham['ten'] ?> - Size  <?php echo $sanpham['size'] ?><p><?php echo $sanpham['gia'] ?> VNĐ</p></div>
+                             <div><?php echo $sanpham['ten'] ?> - Size  <?php echo $sanpham['size'] ?> - SL : <?php echo $sanpham['so_luong'] ?> - Giá : <?php echo number_format(($tong_gia_sanpham = $sanpham['gia']*$sanpham['so_luong']), 0, '', '') ?> VNĐ</div>
                             <?php
-                                $tong_tien += $sanpham['gia'];
+                                $tong_tien += $tong_gia_sanpham;
                             } ?>
                          </div>
 

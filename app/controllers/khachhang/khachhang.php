@@ -141,7 +141,7 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                 $id_nguoi_dung = $_SESSION["khachhang"]['id'];
                 if (isset($_POST['them_vao_giohang'])) {
                     $id_san_pham = $_POST['id'];
-                    $so_luong = 1;
+                    $so_luong = $_POST['so_luong'];
                     them_vao_giohang($id_nguoi_dung, $id_san_pham, $so_luong);
                 }
                 $gio_hang = gio_hang($id_nguoi_dung);
@@ -179,7 +179,7 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                     $gio_hang = gio_hang($id_nguoi_dung);
                     foreach ($gio_hang as $sanpham) {
                         $id_san_pham = $sanpham['id'];
-                        $so_luong = 1;
+                        $so_luong = $sanpham['so_luong'];
                         $don_gia = $sanpham['gia'];
                         $thanh_tien = $don_gia * $so_luong;
                         them_chitiet_donhang($id_don_hang, $id_san_pham, $so_luong, $thanh_tien);

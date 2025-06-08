@@ -42,7 +42,7 @@
             <tr>
                 <td><?php echo $item["ten"] ?></td>
                 <td><?php echo $item["gia"] ?> VNĐ</td>
-                <td>1</td>
+                <td><?php echo $item["so_luong_mua"] ?></td>
                 <td><?php echo $item["size"] ?></td>
                 <td><?php echo $item["tong_gia"] ?> VNĐ</td>
                 <td><?php echo $item["phuong_thuc_thanh_toan"] ?></td>

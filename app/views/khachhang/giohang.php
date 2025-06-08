@@ -19,6 +19,7 @@
                  <tbody class="align-middle">
                      <?php
                         $tong_tien = 0;
+                        $tong_gia_sanpham = 0;
                         foreach ($gio_hang as $sanpham) {
                             $hinh_anh = explode(",", $sanpham['danh_sach_anh']);
                             $anh_thu_nhat = $hinh_anh[0];
@@ -27,15 +28,15 @@
                              <td class="align-middle"><img src="http://localhost:90/ecommerce/public/hinhanh/<?php echo $anh_thu_nhat ?>" alt="" style="width: 50px;"><?php echo $sanpham['ten'] ?></td>
                              <td class="align-middle"><?php echo number_format($sanpham['gia'], 0, '', '') ?> VNĐ</td>
                              <td class="align-middle">
-                                 1
+                                 <?php echo $sanpham['so_luong'] ?>
                              </td>
                              <td><?php echo $sanpham['size'] ?></td>
-                             <td class="align-middle"><?php echo number_format($sanpham['gia'], 0, '', '') ?> VNĐ</td>
+                             <td class="align-middle"><?php echo number_format(($tong_gia_sanpham = $sanpham['gia']*$sanpham['so_luong']), 0, '', '') ?> VNĐ</td>
                              <td class="align-middle"><a href="khachhang.php?hanh_dong=xoa_sanpham_giohang&id=<?php echo $sanpham['id_giohang'] ?>" class="btn btn-sm btn-primary" onclick="return(confirm('Bạn có chắc muốn xóa khỏi giỏ hàng?'))"><i class="fa fa-times"></i></a></td>
                          </tr>
 
                      <?php
-                            $tong_tien += $sanpham['gia'];
+                            $tong_tien += $tong_gia_sanpham;
                         } ?>
                  </tbody>
              </table>

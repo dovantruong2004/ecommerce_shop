@@ -27,6 +27,7 @@ function admin_lich_su_donhang($id_don_hang)
     $sql = "SELECT
     dh.*,
     ctdh.*,
+    ctdh.so_luong as so_luong_mua,
     sp.*
         FROM
             don_hang dh
