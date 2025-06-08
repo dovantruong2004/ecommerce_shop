@@ -12,6 +12,7 @@
                 <th>Giá</th>
                 <th>Số lượng còn trong kho</th>
                 <th>Mô tả</th>
+                <th>Size</th>
                 <th>Danh mục của sản phẩm</th>
                 <th>Hành động</th>
             </tr>
@@ -26,6 +27,7 @@
                 <td><?php echo $item["gia"] ?> VNĐ</td>
                 <td><?php echo $item["so_luong"] ?></td>
                 <td><?php echo $item["mo_ta"] ?></td>
+                <td><?php echo $item["size"] ?></td>
                 <td><?php echo $item["ten_danhmuc"] ?></td>
                 <td>
                     <a href="admin.php?hanh_dong=capnhat_sanpham&id=<?php echo $item["id"] ?>" class="btn btn-warning">Cập nhật</a>

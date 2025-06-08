@@ -103,6 +103,7 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                 $gia = $_POST["gia"];
                 $mo_ta = $_POST["mo_ta"];
                 $so_luong = $_POST["so_luong"];
+                $size = $_POST["size"];
                 $id_danh_muc = $_POST["id_danh_muc"];
                 if ($ten == "") {
                     $loi = "Không được để trống tên sản phẩm";
@@ -113,7 +114,7 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                 } elseif ($so_luong == "") {
                     $loi = "Không được để trống số lượng sản phẩm";
                 } else {
-                    them_sanpham($ten, $mo_ta, $gia, $so_luong, $id_danh_muc);
+                    them_sanpham($ten, $mo_ta, $gia, $so_luong, $size, $id_danh_muc);
                     $thong_bao = "Thêm thành công";
                 }
             }
@@ -131,17 +132,29 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                 $gia = $_POST["gia"];
                 $mo_ta = $_POST["mo_ta"];
                 $so_luong = $_POST["so_luong"];
+                $size = $_POST["size"];
                 $id_danh_muc = $_POST["id_danh_muc"];
+                //var_dump($ten);
                 if ($ten == "") {
                     $loi = "Không được để trống tên sản phẩm";
+                    $mot_sanpham = truyvan_mot_sanpham($id);
                 } elseif ($gia == "") {
                     $loi = "Không được để trống giá sản phẩm";
+                    $mot_sanpham = truyvan_mot_sanpham($id);
                 } elseif ($mo_ta == "") {
                     $loi = "Không được để trống mô tả sản phẩm";
+                    $mot_sanpham = truyvan_mot_sanpham($id);
                 } elseif ($so_luong == "") {
                     $loi = "Không được để trống số lượng sản phẩm";
+                    $mot_sanpham = truyvan_mot_sanpham($id);
+                }elseif ($id_danh_muc == "") {
+                    $loi = "Không được để trống id danh mục sản phẩm";
+                    $mot_sanpham = truyvan_mot_sanpham($id);
+                }elseif ($size == "") {
+                    $loi = "Không được để trống id danh mục sản phẩm";
+                    $mot_sanpham = truyvan_mot_sanpham($id);
                 } else {
-                    capnhat_sanpham($id, $ten, $mo_ta, $gia, $so_luong, $id_danh_muc);
+                    capnhat_sanpham($id, $ten, $mo_ta, $gia, $so_luong, $size, $id_danh_muc);
                     $mot_sanpham = truyvan_mot_sanpham($id);
                     $thong_bao = "Cập nhật thành công";
                 }
@@ -340,7 +353,7 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
             include("../../views/admin/danhmuc_baiviet/them.php");
             break;
         case "capnhat_danhmuc_baiviet":
-            if(isset($_GET['id'])){
+            if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 $danhmuc_baiviet = danhmuc_baiviet($id);
             }
@@ -350,7 +363,7 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                 if ($ten == "") {
                     $loi = "Danh mục bài viết không được để trống";
                 } else {
-                    capnhat_danhmuc_baiviet($id,$ten);
+                    capnhat_danhmuc_baiviet($id, $ten);
                     $thong_bao = "Cập nhật thành công";
                     $danhmuc_baiviet = danhmuc_baiviet($id);
                 }
@@ -372,32 +385,32 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
             include("../../views/admin/baiviet/danhsach.php");
             break;
         case "them_baiviet":
-            if(isset($_POST['them_baiviet'])){
+            if (isset($_POST['them_baiviet'])) {
                 $tieu_de = $_POST['tieu_de'];
                 $noi_dung = $_POST['noi_dung'];
                 $tac_gia = $_POST['tac_gia'];
                 $ngay_dang_bai = date("Y-m-d");
                 $id_danhmuc_baiviet = $_POST['id_danhmuc_baiviet'];
-                them_baiviet($tieu_de,$noi_dung,$tac_gia,$ngay_dang_bai,$id_danhmuc_baiviet);
+                them_baiviet($tieu_de, $noi_dung, $tac_gia, $ngay_dang_bai, $id_danhmuc_baiviet);
                 $thong_bao = "Thêm thành công";
             }
             $danhsach_danhmuc_baiviet = danhsach_danhmuc_baiviet();
             include("../../views/admin/baiviet/them.php");
             break;
         case "capnhat_baiviet":
-            if(isset($_GET['id'])){
+            if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 $chitiet_baiviet = chitiet_baiviet($id);
                 $danhsach_danhmuc_baiviet = danhsach_danhmuc_baiviet();
             }
-            if(isset($_POST['capnhat_baiviet'])){
+            if (isset($_POST['capnhat_baiviet'])) {
                 $id = $_POST["id"];
                 $tieu_de = $_POST['tieu_de'];
                 $noi_dung = $_POST['noi_dung'];
                 $tac_gia = $_POST['tac_gia'];
                 $ngay_dang_bai = date("Y-m-d");
                 $id_danhmuc_baiviet = $_POST['id_danhmuc_baiviet'];
-                capnhat_baiviet($id,$tieu_de,$noi_dung,$tac_gia,$ngay_dang_bai,$id_danhmuc_baiviet);
+                capnhat_baiviet($id, $tieu_de, $noi_dung, $tac_gia, $ngay_dang_bai, $id_danhmuc_baiviet);
                 $thong_bao = "Cập nhật thành công";
                 $chitiet_baiviet = chitiet_baiviet($id);
             }

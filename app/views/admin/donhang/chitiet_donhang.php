@@ -30,6 +30,7 @@
                 <th>Sản phẩm</th>
                 <th>Giá</th>
                 <th>Số lượng</th>
+                <th>Size</th>
                 <th>Tổng giá</th>
                 <th>Phương thức thanh toán</th>
                 <th>Trạng thái đơn hàng</th>
@@ -42,6 +43,7 @@
                 <td><?php echo $item["ten"] ?></td>
                 <td><?php echo $item["gia"] ?> VNĐ</td>
                 <td>1</td>
+                <td><?php echo $item["size"] ?></td>
                 <td><?php echo $item["tong_gia"] ?> VNĐ</td>
                 <td><?php echo $item["phuong_thuc_thanh_toan"] ?></td>
                 <td><?php echo $item["trang_thai"] ?></td>

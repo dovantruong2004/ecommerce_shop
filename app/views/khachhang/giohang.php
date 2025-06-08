@@ -11,6 +11,7 @@
                          <th>Sản phẩm</th>
                          <th>Giá</th>
                          <th>Số lượng</th>
+                         <th>Size</th>
                          <th>Tổng giá</th>
                          <th>Xóa</th>
                      </tr>
@@ -28,6 +29,7 @@
                              <td class="align-middle">
                                  1
                              </td>
+                             <td><?php echo $sanpham['size'] ?></td>
                              <td class="align-middle"><?php echo number_format($sanpham['gia'], 0, '', '') ?> VNĐ</td>
                              <td class="align-middle"><a href="khachhang.php?hanh_dong=xoa_sanpham_giohang&id=<?php echo $sanpham['id_giohang'] ?>" class="btn btn-sm btn-primary" onclick="return(confirm('Bạn có chắc muốn xóa khỏi giỏ hàng?'))"><i class="fa fa-times"></i></a></td>
                          </tr>
@@ -60,6 +62,7 @@
                          <h5 class="font-weight-bold"><?php echo number_format($tong_tien, 0, '', '') ?> VNĐ</h5>
                      </div>
                      <a href="khachhang.php?hanh_dong=thanh_toan" class="btn btn-block btn-primary my-3 py-3">Tiến hành thanh toán</a>
+                     <a href="khachhang.php?hanh_dong=danhsach_sanpham" class="btn btn-block btn-primary my-3 py-3">Tiếp tục mua hàng</a>
                  </div>
              </div>
          </div>

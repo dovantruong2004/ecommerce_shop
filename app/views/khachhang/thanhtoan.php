@@ -39,7 +39,7 @@
                                 
                             ?>
                              <input type="hidden" name="id_san_pham" value="<?php echo $sanpham['id'] ?>">
-                             <div><?php echo $sanpham['ten'] ?><p><?php echo $sanpham['gia'] ?> VNĐ</p></div>
+                             <div><?php echo $sanpham['ten'] ?> - Size  <?php echo $sanpham['size'] ?><p><?php echo $sanpham['gia'] ?> VNĐ</p></div>
                             <?php
                                 $tong_tien += $sanpham['gia'];
                             } ?>

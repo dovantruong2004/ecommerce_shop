@@ -45,6 +45,7 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                 $ten = $_POST['ten'];
                 $thongtin_sanpham = loc_sanpham_theo_ten($ten);
             } else {
+                echo "Không tìm được sản phẩm !";
                 $thongtin_sanpham = thongtin_sanpham();
             }
             $danhsach_danhmuc = danhsach_danhmuc();

@@ -29,6 +29,7 @@
                     <th>Sản phẩm</th>
                     <th>Giá</th>
                     <th>Số lượng</th>
+                    <th>Size</th>
                     <th>Tổng giá</th>
                     <th>Phương thức thanh toán</th>
                     <th>Trạng thái đơn hàng</th>
@@ -44,6 +45,7 @@
                         <td class="align-middle">
                             1
                         </td>
+                        <td><?php echo $don_hang['size'] ?></td>
                         <td class="align-middle"><?php echo $don_hang['tong_gia'] ?> VNĐ</td>
                         <td class="align-middle"><?php echo $don_hang['phuong_thuc_thanh_toan'] ?></td>
                         <td class="align-middle"><?php echo $don_hang['trang_thai'] ?></td>
