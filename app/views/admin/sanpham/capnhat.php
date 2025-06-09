@@ -31,16 +31,7 @@
                 <?php }?>
             </select>
         </div>
-        </div><div class="mt-4">
-            <label for="">Chọn size</label>
-            <select name="size" id="">
-                <option value="">--Chọn--</option>
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
-            </select>
-        </div>
+        
         <p style="color: green;"><strong><?php echo $thong_bao ?></strong></p>
         <p style="color: red;"><strong><?php echo $loi ?></strong></p>
         <input type="submit" name="capnhat_sanpham" class="btn btn-primary mt-3" value="Cập nhật"></input>

@@ -12,6 +12,8 @@ include("../../models/donhang.php");
 include("../../models/nguoidung.php");
 include("../../models/chi_tiet_donhang.php");
 include("../../models/lienhe.php");
+include("../../models/size.php");
+include("../../models/sanpham_size.php");
 include("../../../duong_dan_anh.php");
 $danhsach_danhmuc = danhsach_danhmuc();
 $danhsach_sanpham = danhsach_sanpham();
@@ -56,6 +58,7 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                 $id = $_GET['id'];
                 $hinhanh_sanpham = hinhanh_sanpham($id);
                 $thongtin_sanpham = truyvan_mot_sanpham($id);
+                $chitiet_sanpham_size = chitiet_sanpham_size($id);
                 $binhluan_sanpham = binhluan_sanpham($id);
                 $so_binh_luan = so_binh_luan();
                 include("../../views/khachhang/chitiet_sanpham.php");
@@ -142,7 +145,8 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                 if (isset($_POST['them_vao_giohang'])) {
                     $id_san_pham = $_POST['id'];
                     $so_luong = $_POST['so_luong'];
-                    them_vao_giohang($id_nguoi_dung, $id_san_pham, $so_luong);
+                    $size = $_POST['ten_size'];
+                    them_vao_giohang($id_nguoi_dung, $id_san_pham, $so_luong,$size);
                 }
                 $gio_hang = gio_hang($id_nguoi_dung);
             }
@@ -181,8 +185,9 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                         $id_san_pham = $sanpham['id'];
                         $so_luong = $sanpham['so_luong'];
                         $don_gia = $sanpham['gia'];
+                        $size = $sanpham['size'];
                         $thanh_tien = $don_gia * $so_luong;
-                        them_chitiet_donhang($id_don_hang, $id_san_pham, $so_luong, $thanh_tien);
+                        them_chitiet_donhang($id_don_hang, $id_san_pham, $so_luong,$size, $thanh_tien);
                     }
                     // Xóa giỏ hàng sau khi thanh toán thành công 
                     xoa_giohang_nguoidung($id_nguoi_dung);

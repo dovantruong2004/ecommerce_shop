@@ -1,7 +1,7 @@
 <?php
-function them_chitiet_donhang($id_don_hang, $id_san_pham, $so_luong, $tong_gia)
+function them_chitiet_donhang($id_don_hang, $id_san_pham, $so_luong,$size, $tong_gia)
 {
-    $sql = "INSERT INTO chi_tiet_don_hang(id_don_hang,id_san_pham,so_luong,tong_gia) VALUES('$id_don_hang','$id_san_pham','$so_luong','$tong_gia')";
+    $sql = "INSERT INTO chi_tiet_don_hang(id_don_hang,id_san_pham,so_luong,size,tong_gia) VALUES('$id_don_hang','$id_san_pham','$so_luong','$size','$tong_gia')";
     thucthi_truyvan($sql);
 }
 function lich_su_donhang($id_nguoi_dung,$id_don_hang)
@@ -9,6 +9,7 @@ function lich_su_donhang($id_nguoi_dung,$id_don_hang)
     $sql = "SELECT
     dh.*,
     ctdh.*,
+    ctdh.so_luong as so_luong_mua,
     sp.*
         FROM
             don_hang dh

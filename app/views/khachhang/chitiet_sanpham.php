@@ -26,12 +26,16 @@
              </div>
 
              <div class="col-lg-7 pb-5">
-                <h3 class="font-weight-semi-bold">Tên - <?php echo $thongtin_sanpham['ten'] ?></h3>
+                 <h3 class="font-weight-semi-bold">Tên - <?php echo $thongtin_sanpham['ten'] ?></h3>
                  <div class="d-flex mb-3">
                  </div>
-                <h3 class="font-weight-semi-bold mb-4">Giá - <?php echo number_format($thongtin_sanpham['gia'], 0, '', '') ?> VNĐ</h3>
-                <h3 class="font-weight-semi-bold">Size - <?php echo $thongtin_sanpham['size'] ?></h3>
-
+                 <h3 class="font-weight-semi-bold mb-4">Giá - <?php echo number_format($thongtin_sanpham['gia'], 0, '', '') ?> VNĐ</h3>
+                 <h3 class="font-weight-semi-bold">
+                     <?php foreach ($chitiet_sanpham_size as $item) { ?>
+                         <input type="radio" style="width: 25px;height:25px;" name="ten_size" id="" value="<?php echo $item['ten_size'] ?>">
+                         <?php echo $item['ten_size'] ?>
+                     <?php } ?>
+                 </h3>
                  <div class="d-flex align-items-center mb-4 pt-2">
                      <div class="input-group quantity mr-3" style="width: 130px;">
                          <div class="input-group-btn">

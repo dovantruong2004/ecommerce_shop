@@ -1,6 +1,6 @@
 <?php 
-    function them_vao_giohang($id_nguoi_dung,$id_san_pham,$so_luong){
-        $sql = "INSERT INTO gio_hang(id_nguoi_dung,id_san_pham,so_luong) VALUES('$id_nguoi_dung','$id_san_pham','$so_luong')";
+    function them_vao_giohang($id_nguoi_dung,$id_san_pham,$so_luong,$size){
+        $sql = "INSERT INTO gio_hang(id_nguoi_dung,id_san_pham,so_luong,size) VALUES('$id_nguoi_dung','$id_san_pham','$so_luong','$size')";
         thucthi_truyvan($sql);
     }
     function gio_hang($id){
@@ -8,8 +8,8 @@
             sp.id,
             sp.ten,
             sp.gia,
-            sp.size,
             gh.so_luong,
+            gh.size,
             gh.id as id_giohang,
             GROUP_CONCAT(DISTINCT asp.url SEPARATOR ', ') AS danh_sach_anh
         FROM

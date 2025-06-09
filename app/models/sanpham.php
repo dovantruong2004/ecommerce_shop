@@ -2,7 +2,7 @@
 
 function danhsach_sanpham()
 {
-    $sql = "SELECT san_pham.id, san_pham.ten, san_pham.gia, san_pham.mo_ta, san_pham.so_luong, san_pham.size,
+    $sql = "SELECT san_pham.id, san_pham.ten, san_pham.gia, san_pham.mo_ta, san_pham.so_luong,
                 danh_muc.ten AS ten_danhmuc 
                 FROM san_pham
                 LEFT JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id";
@@ -17,7 +17,7 @@ function lay_sanpham_theo_danhmuc($id)
 }
 function truyvan_mot_sanpham($id)
 {
-    $sql = "SELECT san_pham.id, san_pham.ten, san_pham.gia, san_pham.mo_ta, san_pham.so_luong, san_pham.size,
+    $sql = "SELECT san_pham.id, san_pham.ten, san_pham.gia, san_pham.mo_ta, san_pham.so_luong,
                 danh_muc.ten AS ten_danhmuc 
                 FROM san_pham
                 LEFT JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id
@@ -25,14 +25,14 @@ function truyvan_mot_sanpham($id)
     $mot_sanpham = pdo_query_one($sql);
     return $mot_sanpham;
 }
-function capnhat_sanpham($id, $ten, $mo_ta, $gia, $so_luong, $size, $id_danh_muc)
+function capnhat_sanpham($id, $ten, $mo_ta, $gia, $so_luong, $id_danh_muc)
 {
-    $sql = "UPDATE san_pham SET ten = '$ten' , mo_ta = '$mo_ta' , gia='$gia' , so_luong ='$so_luong', size = '$size', id_danh_muc ='$id_danh_muc' WHERE id = '$id'";
+    $sql = "UPDATE san_pham SET ten = '$ten' , mo_ta = '$mo_ta' , gia='$gia' , so_luong ='$so_luong', id_danh_muc ='$id_danh_muc' WHERE id = '$id'";
     thucthi_truyvan($sql);
 }
-function them_sanpham($ten, $mo_ta, $gia, $so_luong,$size, $id_danh_muc)
+function them_sanpham($ten, $mo_ta, $gia, $so_luong, $id_danh_muc)
 {
-    $sql = "INSERT INTO san_pham(ten,mo_ta,gia,so_luong,size,id_danh_muc) VALUES('$ten','$mo_ta','$gia','$so_luong','$size','$id_danh_muc')";
+    $sql = "INSERT INTO san_pham(ten,mo_ta,gia,so_luong,id_danh_muc) VALUES('$ten','$mo_ta','$gia','$so_luong','$id_danh_muc')";
     thucthi_truyvan($sql);
 }
 function xoa_sanpham($id)
@@ -43,12 +43,7 @@ function xoa_sanpham($id)
 function thongtin_sanpham()
 {
     $sql = "SELECT
-    sp.id,
-    sp.ten,
-    sp.gia,
-    sp.mo_ta,
-    sp.so_luong,
-    sp.size,
+    sp.*,
     dm.ten AS ten_danh_muc,
     GROUP_CONCAT(DISTINCT asp.url SEPARATOR ', ') AS danh_sach_anh,
     GROUP_CONCAT(DISTINCT tksp.tu_khoa SEPARATOR ', ') AS danh_sach_tu_khoa
@@ -75,7 +70,6 @@ function loc_sanpham_theo_danhmuc($id){
     sp.gia,
     sp.mo_ta,
     sp.so_luong,
-    sp.size,
     dm.ten AS ten_danh_muc,
     GROUP_CONCAT(DISTINCT asp.url SEPARATOR ', ') AS danh_sach_anh,
     GROUP_CONCAT(DISTINCT tksp.tu_khoa SEPARATOR ', ') AS danh_sach_tu_khoa
@@ -100,7 +94,6 @@ function loc_sanpham_theo_ten($ten){
     sp.gia,
     sp.mo_ta,
     sp.so_luong,
-    sp.size,
     dm.ten AS ten_danh_muc,
     GROUP_CONCAT(DISTINCT asp.url SEPARATOR ', ') AS danh_sach_anh,
     GROUP_CONCAT(DISTINCT tksp.tu_khoa SEPARATOR ', ') AS danh_sach_tu_khoa

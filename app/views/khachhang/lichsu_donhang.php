@@ -43,7 +43,7 @@
                         <td class="align-middle"><?php echo $don_hang['ten'] ?></td>
                         <td class="align-middle"><?php echo number_format($don_hang['gia'], 0, '', '') ?> VNĐ</td>
                         <td class="align-middle">
-                            1
+                            <?php echo $don_hang['so_luong_mua'] ?>
                         </td>
                         <td><?php echo $don_hang['size'] ?></td>
                         <td class="align-middle"><?php echo $don_hang['tong_gia'] ?> VNĐ</td>

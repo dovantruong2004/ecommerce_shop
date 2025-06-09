@@ -14,6 +14,8 @@ include("../../models/nguoidung.php");
 include("../../models/chi_tiet_donhang.php");
 include("../../models/thong_ke.php");
 include("../../models/lienhe.php");
+include("../../models/size.php");
+include("../../models/sanpham_size.php");
 include("../../../duong_dan_anh.php");
 $thong_bao = '';
 $loi = '';
@@ -103,7 +105,7 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                 $gia = $_POST["gia"];
                 $mo_ta = $_POST["mo_ta"];
                 $so_luong = $_POST["so_luong"];
-                $size = $_POST["size"];
+
                 $id_danh_muc = $_POST["id_danh_muc"];
                 if ($ten == "") {
                     $loi = "Không được để trống tên sản phẩm";
@@ -114,10 +116,11 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                 } elseif ($so_luong == "") {
                     $loi = "Không được để trống số lượng sản phẩm";
                 } else {
-                    them_sanpham($ten, $mo_ta, $gia, $so_luong, $size, $id_danh_muc);
+                    them_sanpham($ten, $mo_ta, $gia, $so_luong, $id_danh_muc);
                     $thong_bao = "Thêm thành công";
                 }
             }
+            $tatca_size  = tatca_size();
             $danhsach_danhmuc = danhsach_danhmuc();
             include("../../views/admin/sanpham/them.php");
             break;
@@ -132,7 +135,7 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                 $gia = $_POST["gia"];
                 $mo_ta = $_POST["mo_ta"];
                 $so_luong = $_POST["so_luong"];
-                $size = $_POST["size"];
+
                 $id_danh_muc = $_POST["id_danh_muc"];
                 //var_dump($ten);
                 if ($ten == "") {
@@ -147,18 +150,16 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
                 } elseif ($so_luong == "") {
                     $loi = "Không được để trống số lượng sản phẩm";
                     $mot_sanpham = truyvan_mot_sanpham($id);
-                }elseif ($id_danh_muc == "") {
-                    $loi = "Không được để trống id danh mục sản phẩm";
-                    $mot_sanpham = truyvan_mot_sanpham($id);
-                }elseif ($size == "") {
+                } elseif ($id_danh_muc == "") {
                     $loi = "Không được để trống id danh mục sản phẩm";
                     $mot_sanpham = truyvan_mot_sanpham($id);
                 } else {
-                    capnhat_sanpham($id, $ten, $mo_ta, $gia, $so_luong, $size, $id_danh_muc);
+                    capnhat_sanpham($id, $ten, $mo_ta, $gia, $so_luong, $id_danh_muc);
                     $mot_sanpham = truyvan_mot_sanpham($id);
                     $thong_bao = "Cập nhật thành công";
                 }
             }
+            $tatca_size  = tatca_size();
             $danhsach_sanpham = danhsach_sanpham();
             $danhsach_danhmuc = danhsach_danhmuc();
             include("../../views/admin/sanpham/capnhat.php");
@@ -172,6 +173,59 @@ if (isset($_GET["hanh_dong"]) && $_GET["hanh_dong"] != "") {
             $danhsach_sanpham = danhsach_sanpham();
             $danhsach_danhmuc = danhsach_danhmuc();
             include("../../views/admin/sanpham/danhsach.php");
+            break;
+        case "them_size":
+            if (isset($_POST['them_size'])) {
+                $id_san_pham = $_POST['id_san_pham'];
+                $id_size = $_POST['id_size'];
+                them_sanpham_size($id_san_pham, $id_size);
+                $thong_bao = "Thêm thành công";
+            }
+            $danhsach_sanpham = danhsach_sanpham();
+            $tatca_size  = tatca_size();
+            include("../../views/admin/sanpham/them_size.php");
+            break;
+        case "capnhat_size":
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $mot_sanpham_size = mot_sanpham_size($id);
+            }
+            if (isset($_POST['capnhat_size'])) {
+                $id = $_POST['id'];
+                $id_san_pham = $_POST['id_sanpham'];
+                $id_size = $_POST['id_size'];
+                capnhat_sanpham_size($id, $id_san_pham, $id_size);
+                $mot_sanpham_size = mot_sanpham_size($id);
+                $thong_bao = "Cập nhật thành công";
+            }
+            $danhsach_sanpham = danhsach_sanpham();
+            $tatca_size  = tatca_size();
+            include("../../views/admin/sanpham/capnhat_size.php");
+            break;
+        case "xoa_size":
+            if (isset($_GET["id_xoa"])) {
+                $id = $_GET["id_xoa"];
+                xoa_sanpham_size($id);
+                $thong_bao = "Xóa thành công";
+            }
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $chitiet_sanpham_size = chitiet_sanpham_size($id);
+            }
+
+            $danhsach_sanpham = danhsach_sanpham();
+            $danhsach_danhmuc = danhsach_danhmuc();
+            include("../../views/admin/sanpham/chitiet.php");
+            break;
+        case "chitiet":
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $chitiet_sanpham_size = chitiet_sanpham_size($id);
+                //var_dump($chitiet_sanpham_size);
+            }
+            $danhsach_sanpham = danhsach_sanpham();
+            $danhsach_danhmuc = danhsach_danhmuc();
+            include("../../views/admin/sanpham/chitiet.php");
             break;
         // Quản lí đa hình ảnh
         case "da_hinhanh":

@@ -30,7 +30,7 @@
                              <td class="align-middle">
                                  <?php echo $sanpham['so_luong'] ?>
                              </td>
-                             <td><?php echo $sanpham['size'] ?></td>
+                             <td class="align-middle"><?php echo $sanpham['size'] ?></td>
                              <td class="align-middle"><?php echo number_format(($tong_gia_sanpham = $sanpham['gia']*$sanpham['so_luong']), 0, '', '') ?> VNĐ</td>
                              <td class="align-middle"><a href="khachhang.php?hanh_dong=xoa_sanpham_giohang&id=<?php echo $sanpham['id_giohang'] ?>" class="btn btn-sm btn-primary" onclick="return(confirm('Bạn có chắc muốn xóa khỏi giỏ hàng?'))"><i class="fa fa-times"></i></a></td>
                          </tr>
